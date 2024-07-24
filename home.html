@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube</title>
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/256/1384/1384060.png" type="image/x-icon">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #allvideos{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 20px;
+            gap: 20px;
+        }
+        iframe{
+            height: 250px;
+            border-radius: 10px;
+            background-color: #ccc;
+            margin-bottom: 10px;
+        }
+        
+        .info{
+            display: flex;
+            gap: 10px;
+        }
+        .info small{
+            color: gray;
+        }
+        a{
+            text-decoration: none;
+            color: #000;
+        }
+        @media (max-width:768px){
+            #allvideos{
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="allvideos"></div>
+    </div>
+    
+    <script>
+        const videosContainer = document.getElementById('allvideos')
+        const data = [
+            {
+                video:'https://www.youtube.com/embed/wrf-1gpVHTY?si=-2xEysC4IVE-LlBi',
+                title:'Kaikala Satyanarayana And Apoorva Best Telugu Movie Scene | Nede Vidudala',
+                likes:'3',
+                subscribers:'99.5k',
+                profile:'https://yt3.ggpht.com/0L6Pj2lkiN_V5MxjWce931x1yBpijI2yenuxp-gslN_x_RMXe5-415vAcDZBcDXrGQugFJMWMw=s88-c-k-c0x00ffffff-no-rj',
+                desc:' #nedevidudala #telugumoviescenes #kaikalasatyanarayana Kaikala Satyanarayana And Apoorva Best Telugu Movie Scene | Nede Vidudala',
+                name:'Mallemalatv',
+                date:'9 years ago',
+                views:'51M'
+            },
+            {
+                video:'https://www.youtube.com/embed/0bEZ1NhcCOc?si=KLfxtQWZQY42qINU',
+                title:'Arundhati (2009) - Latest Telugu Full Length HD Movie || Anushka | Sonu Sood | Shinde',
+                likes:'218k',
+                subscribers:'91.5k',
+                profile:'https://yt3.ggpht.com/ytc/AIdro_lOdCvQ7NG0fwd7ZGQrv-VWiM8UKOFYfu1ir3kuQkXILcs=s88-c-k-c0x00ffffff-no-rj',
+                desc:'Satyanarayana #nedevidudala #telugumoviescenes #kaikalasatyanarayana Kaikala Satyanarayana And Apoorva Best Telugu Movie Scene | Nede Vidudala',
+                name:'Mallemalatv2',
+                date:'5 years ago',
+                views:'50M'
+            }
+        ]
+
+        function displayVideos(){
+            data.map((item, index)=>{
+                videosContainer.innerHTML += `
+               <a href=${`./view.html?index=${index}`}>
+                 <div>
+                   <iframe width="100%" height="300" src=${item.video} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 
+                   <div class="info">
+                    <img src="${item.profile}" alt=${item.name} style="width:50px; height:50px; border-radius:100px">
+                    <div>
+                        <h4 style="margin:0px">${item.title}</h4>
+                        <small>${item.name}</small> <br>
+                        <small>${item.views} - ${item.date}</small>
+                        </div>
+                    </div>
+                </div>
+                </a>
+                `
+            })
+        }
+
+        displayVideos()
+    </script>
+</body>
+</html>
